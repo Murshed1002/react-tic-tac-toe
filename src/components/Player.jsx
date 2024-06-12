@@ -1,13 +1,16 @@
 import { useState } from "react";
-export default function Player({symbol, activeStatus}){
+export default function Player({symbol, activeStatus, initialName, setPlayer}){
 
-    const [playerName, setPlayerName] = useState("Player");
+    const [playerName, setPlayerName] = useState(initialName);
     const [isEditing, setisEditing] = useState(false);
 
     const handleChange = ({target})=>{
         setPlayerName(target.value);
     }
 
+    if(!isEditing){
+        setPlayer(playerName, symbol);
+    }
     const handleClick = ()=>{
         setisEditing((isEditing) => !isEditing); // best practice to pass inside fucntion which will gurantee always giving the latest state instead of scheduling the state update
     }
